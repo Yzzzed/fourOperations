@@ -2,7 +2,9 @@
  * @Author: Yzed 
  * @Date: 2019-03-21 08:30:24 
  * @Last Modified by: Yzed
- * @Last Modified time: 2019-03-21 08:50:10
+ * @Last Modified time: 2019-03-28 15:15:00
+ * 
+ * 详细可看README.md
  */
 
 const fs = require('fs')
@@ -36,7 +38,7 @@ let main = {
 
     },
     write: function(n){
-
+        //写入整条式子
         let totalFormula,param,tolRes
         let resFile = path.resolve(__dirname,'../result.txt')
             forArr = ['2017011776']
@@ -54,7 +56,7 @@ let main = {
         
     },
     operate: function(){
-
+        //生成式子的过程
         let param = {}
 
         let ins = Math.floor(Math.random() * 3 + 2 )
@@ -102,9 +104,11 @@ let main = {
         }
 
         param.formula = out.join('')
+        //将式子中的/全部替换为÷
         forStr = param.formula.replace(/\÷/g,'/')
+        //直接用eval计算结果
         param.res = eval(forStr)
-
+        
         if(param.res<0 || param.res%1!=0 || param.res>2000){
 
             param  = this.operate()
